@@ -1,6 +1,8 @@
-package com.wanandroid;
+package com.wanandroid.ui;
 
 import android.os.Bundle;
+
+import com.wanandroid.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 

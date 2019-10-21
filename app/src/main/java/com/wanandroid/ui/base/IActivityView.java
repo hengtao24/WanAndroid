@@ -8,7 +8,8 @@ import androidx.annotation.LayoutRes;
  */
 public interface IActivityView {
 	@LayoutRes
-	int initView();
+	int initLayoutId();
+	void initView();
 	void initData();
 	void initStatusBar();
 }
