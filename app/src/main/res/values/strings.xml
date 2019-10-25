@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">wanandroid</string>
     <string name="logo_name">WanAndroid 客户端</string>
+    <string name="loginUserName">账号</string>
+    <string name="loginPassword">密码</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="no_username">请输入用户名</string>
+    <string name="no_password">请输入密码</string>
 </resources>

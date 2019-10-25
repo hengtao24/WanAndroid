@@ -1,15 +1,17 @@
-package com.wanandroid.ui;
+package com.wanandroid.mvp.ui.activity.start;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.wanandroid.R;
-import com.wanandroid.ui.base.BaseActivity;
+import com.wanandroid.mvp.ui.activity.base.BaseActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 /**
+ * splash activity
+ *
  * @author hengtao
  * @since 2019-10-12
  */
@@ -39,11 +41,10 @@ public class SplashActivity extends BaseActivity {
 				goToMainActivity();
 			}
 		}, 1000);
-
 	}
 
 	private void goToMainActivity() {
-		Intent intent = new Intent(this, MainActivity.class);
+		Intent intent = new Intent(this, LoginActivity.class);
 		startActivity(intent);
 		finish();
 	}
