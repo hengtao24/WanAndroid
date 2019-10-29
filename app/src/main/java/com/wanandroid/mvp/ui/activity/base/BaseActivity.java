@@ -21,15 +21,13 @@ import butterknife.Unbinder;
  * @author hengtao
  * @since 2019-10-19
  */
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IBaseActivityView {
+public abstract class BaseActivity extends AppCompatActivity implements IBaseActivityView {
 	private static final String TAG = "BaseActivity";
 
 	@BindView(R.id.toolbar)
 	protected Toolbar mToolbar;
 
 	private Unbinder mUnbinder;
-
-	protected P mPresenter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +37,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 		initView();
 		initStatusBar();
 		initData();
-		mPresenter = createPresenter();
-		if (mPresenter != null) {
-			mPresenter.attachView(this);
-		}
 	}
 
 	@Override
@@ -70,6 +64,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
 	@Override
 	public void showLoading() {
+		WALog.logI(TAG, Thread.currentThread().getName() + " :showLoading");
 	}
 
 	@Override
@@ -77,15 +72,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 		ToastUtil.show(msg);
 	}
 
-	protected abstract P createPresenter();
-
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		mUnbinder.unbind();
-		if (mPresenter != null) {
-			mPresenter.detachView();
-			mPresenter = null;
-		}
 	}
 }

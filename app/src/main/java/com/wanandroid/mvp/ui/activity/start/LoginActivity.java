@@ -15,6 +15,7 @@ import com.wanandroid.R;
 import com.wanandroid.mvp.contract.start.LoginContract;
 import com.wanandroid.mvp.presenter.start.LoginPresenter;
 import com.wanandroid.mvp.ui.activity.base.BaseActivity;
+import com.wanandroid.mvp.ui.activity.base.BaseMVPActivity;
 import com.wanandroid.util.WALog;
 
 import butterknife.BindView;
@@ -26,7 +27,7 @@ import butterknife.OnClick;
  * @author hengtao
  * @since 2019-10-19
  */
-public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
+public class LoginActivity extends BaseMVPActivity<LoginPresenter> implements LoginContract.View {
 	private static final String TAG = "LoginActivity";
 
 	@BindView(R.id.et_username)
@@ -127,13 +128,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 	 * handle login
 	 */
 	private void handleLogin() {
-		if (TextUtils.isEmpty(mEtUserName.getText().toString())) {
-			showMessage(getString(R.string.no_username));
-		} else if (TextUtils.isEmpty(mEtPassword.getText().toString())) {
-			showMessage(getString(R.string.no_password));
-		} else {
-			mPresenter.login(mEtUserName.getText().toString(), mEtPassword.getText().toString());
-		}
+//		if (TextUtils.isEmpty(mEtUserName.getText().toString())) {
+//			showMessage(getString(R.string.no_username));
+//		} else if (TextUtils.isEmpty(mEtPassword.getText().toString())) {
+//			showMessage(getString(R.string.no_password));
+//		} else {
+//			mPresenter.login(mEtUserName.getText().toString(), mEtPassword.getText().toString());
+			mPresenter.login("hengtao", "sht19960421");
+//		}
 	}
 
 	@Override
@@ -143,6 +145,5 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
 	@Override
 	public void onSuccess() {
-
 	}
 }

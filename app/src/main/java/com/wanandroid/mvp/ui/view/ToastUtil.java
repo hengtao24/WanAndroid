@@ -15,7 +15,7 @@ import com.wanandroid.WAApp;
  * @since 2019-10-25
  */
 public class ToastUtil {
-	private static Toast mToast;
+	private static Toast sToast;
 
 	/**
 	 * show msg
@@ -23,11 +23,11 @@ public class ToastUtil {
 	 * @param text the msg to show
 	 */
 	public static void show(String text) {
-		if (mToast == null) {
+		if (sToast == null) {
 			createToast(text);
 		}
-		mToast.cancel();
-		mToast.show();
+		sToast.cancel();
+		sToast.show();
 	}
 
 	/**
@@ -39,8 +39,8 @@ public class ToastUtil {
 		View view = LayoutInflater.from(WAApp.getAppContext()).inflate(R.layout.layout_toast, null);
 		TextView textView = (TextView) view.findViewById(R.id.tv_toast);
 		textView.setText(text);
-		mToast = new Toast(WAApp.getAppContext());
-		mToast.setDuration(Toast.LENGTH_SHORT);
-		mToast.setView(view);
+		sToast = new Toast(WAApp.getAppContext());
+		sToast.setDuration(Toast.LENGTH_SHORT);
+		sToast.setView(view);
 	}
 }

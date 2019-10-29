@@ -1,7 +1,11 @@
 package com.wanandroid.mvp.contract.start;
 
 import com.wanandroid.mvp.model.IBaseModel;
+import com.wanandroid.mvp.model.entity.BaseResponse;
+import com.wanandroid.mvp.model.entity.UserInfo;
 import com.wanandroid.mvp.ui.activity.base.IBaseActivityView;
+
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * login contract
@@ -11,7 +15,7 @@ import com.wanandroid.mvp.ui.activity.base.IBaseActivityView;
  */
 public interface LoginContract {
 	interface Model extends IBaseModel {
-		void login();
+		Observable<BaseResponse<UserInfo>> login(String username, String password);
 	}
 
 	interface View extends IBaseActivityView {

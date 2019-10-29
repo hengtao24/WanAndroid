@@ -3,6 +3,7 @@ package com.wanandroid.mvp.ui.activity;
 import android.os.Bundle;
 
 import com.wanandroid.R;
+import com.wanandroid.mvp.presenter.start.LoginPresenter;
 import com.wanandroid.mvp.ui.activity.base.BaseActivity;
 
 /**
