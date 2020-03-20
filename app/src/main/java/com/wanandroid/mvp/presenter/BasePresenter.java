@@ -1,7 +1,7 @@
 package com.wanandroid.mvp.presenter;
 
 import com.wanandroid.mvp.model.IBaseModel;
-import com.wanandroid.mvp.ui.activity.base.IBaseActivityView;
+import com.wanandroid.mvp.ui.activity.base.IView;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationHandler;
@@ -14,7 +14,7 @@ import java.lang.reflect.Proxy;
  * @author hengtao
  * @since 2019-10-24
  */
-public abstract class BasePresenter<M extends IBaseModel, V extends IBaseActivityView> {
+public abstract class BasePresenter<M extends IBaseModel, V extends IView> {
 	// proxy view
 	private V mProxyView;
 
@@ -73,16 +73,16 @@ public abstract class BasePresenter<M extends IBaseModel, V extends IBaseActivit
 	 * mvp view proxy class
 	 */
 	private class MvpViewProxy implements InvocationHandler {
-		private IBaseActivityView iBaseActivityView;
+		private IView iBaseView;
 
-		MvpViewProxy(IBaseActivityView baseActivityView) {
-			iBaseActivityView = baseActivityView;
+		MvpViewProxy(IView baseActivityView) {
+			iBaseView = baseActivityView;
 		}
 
 		@Override
 		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 			if (isAttachedView()) {
-				return method.invoke(iBaseActivityView, args);
+				return method.invoke(iBaseView, args);
 			}
 			return null;
 		}

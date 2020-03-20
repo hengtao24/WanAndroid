@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home_not_touch"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/project"
+        android:icon="@drawable/project_not_touch"
+        android:title="@string/project"/>
+    <item
+        android:id="@+id/wechat_public"
+        android:icon="@drawable/wechat_public_not_touch"
+        android:title="@string/wechat_public"/>
+</menu>

@@ -3,12 +3,12 @@ package com.wanandroid.mvp.ui.activity.base;
 import androidx.annotation.LayoutRes;
 
 /**
- * base activity view(v of mvp) interface
+ * activity interface
  *
  * @author hengtao
- * @since 2019-10-19
+ * @since 2019-11-06
  */
-public interface IBaseActivityView {
+public interface IActivity {
 	/**
 	 * init layout xml id
 	 *
@@ -31,16 +31,4 @@ public interface IBaseActivityView {
 	 * init status bar
 	 */
 	void initStatusBar();
-
-	/**
-	 * show loading view
-	 */
-	void showLoading();
-
-	/**
-	 * show message
-	 *
-	 * @param msg the msg to show
-	 */
-	void showMessage(String msg);
 }

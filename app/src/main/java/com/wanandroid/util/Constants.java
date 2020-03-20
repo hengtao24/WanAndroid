@@ -8,4 +8,6 @@ package com.wanandroid.util;
  */
 public class Constants {
 	public static final String EMPTY_STRING = "";
+
+	public static final String REQUEST_NETWORK = "请求网络中...";
 }

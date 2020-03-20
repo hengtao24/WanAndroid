@@ -20,4 +20,9 @@ public class LoginModel implements LoginContract.Model {
 	public Observable<BaseResponse<UserInfo>> login(String username, String password) {
 		return ApiService.login(username, password);
 	}
+
+	@Override
+	public Observable<BaseResponse<UserInfo>> register(String username, String password, String repassword) {
+		return ApiService.register(username, password, repassword);
+	}
 }

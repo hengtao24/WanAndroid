@@ -18,4 +18,9 @@ public interface ApiRequest {
 	@FormUrlEncoded
 	@POST("/user/login")
 	Observable<BaseResponse<UserInfo>> login(@Field("username") String username, @Field("password") String password);
-}
+
+	@FormUrlEncoded
+	@POST("/user/register")
+	Observable<BaseResponse<UserInfo>> register(@Field("username") String username, @Field("password") String password,
+	                                            @Field("repassword") String repassword);
+ }

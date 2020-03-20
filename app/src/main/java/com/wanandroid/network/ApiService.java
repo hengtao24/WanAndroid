@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @since 2019-10-25
  */
 public class ApiService {
-	public static final String BASE_URL = "https://www.wanandroid.com";
+	private static final String BASE_URL = "https://www.wanandroid.com";
 
 	private static final Retrofit sRetrofit = new Retrofit.Builder()
 			.baseUrl(BASE_URL)
@@ -26,7 +26,10 @@ public class ApiService {
 	private static final ApiRequest apiManager = sRetrofit.create(ApiRequest.class);
 
 	public static Observable<BaseResponse<UserInfo>> login(String username, String password) {
-		Observable<BaseResponse<UserInfo>> observable = apiManager.login(username, password);
-		return observable;
+		return apiManager.login(username, password);
+	}
+
+	public static Observable<BaseResponse<UserInfo>> register(String username, String password, String repassword) {
+		return apiManager.register(username, password, repassword);
 	}
 }

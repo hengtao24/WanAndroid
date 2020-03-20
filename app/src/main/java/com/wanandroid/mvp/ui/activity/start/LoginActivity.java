@@ -13,9 +13,11 @@ import android.widget.ImageView;
 
 import com.wanandroid.R;
 import com.wanandroid.mvp.contract.start.LoginContract;
+import com.wanandroid.mvp.model.entity.UserInfo;
 import com.wanandroid.mvp.presenter.start.LoginPresenter;
 import com.wanandroid.mvp.ui.activity.base.BaseActivity;
 import com.wanandroid.mvp.ui.activity.base.BaseMVPActivity;
+import com.wanandroid.mvp.ui.view.ToastUtil;
 import com.wanandroid.util.WALog;
 
 import butterknife.BindView;
@@ -128,14 +130,17 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenter> implements Lo
 	 * handle login
 	 */
 	private void handleLogin() {
-//		if (TextUtils.isEmpty(mEtUserName.getText().toString())) {
-//			showMessage(getString(R.string.no_username));
-//		} else if (TextUtils.isEmpty(mEtPassword.getText().toString())) {
-//			showMessage(getString(R.string.no_password));
-//		} else {
-//			mPresenter.login(mEtUserName.getText().toString(), mEtPassword.getText().toString());
-			mPresenter.login("hengtao", "sht19960421");
-//		}
+		WALog.logI(TAG, "username :" + mEtUserName.getText().toString());
+		WALog.logI(TAG, "password :" + mEtPassword.getText().toString());
+		if (TextUtils.isEmpty(mEtUserName.getText().toString())) {
+			showMessage(getString(R.string.no_username));
+			WALog.logI(TAG, "no username");
+		} else if(TextUtils.isEmpty(mEtPassword.getText().toString())) {
+			showMessage(getString(R.string.no_password));
+		} else {
+			WALog.logI(TAG, mEtUserName.getText().toString() + " " + mEtPassword.getText().toString());
+			mPresenter.login(mEtUserName.getText().toString(), mEtPassword.getText().toString());
+		}
 	}
 
 	@Override
@@ -144,6 +149,12 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenter> implements Lo
 	}
 
 	@Override
-	public void onSuccess() {
+	public void onSuccess(UserInfo userInfo) {
+		if (userInfo != null) {
+			WALog.logI(TAG, userInfo.toString());
+			ToastUtil.getInstance().showShort(getString(R.string.login_success));
+		} else {
+			ToastUtil.getInstance().showShort(getString(R.string.login_failed));
+		}
 	}
 }

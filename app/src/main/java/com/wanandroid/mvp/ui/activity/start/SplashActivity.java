@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.wanandroid.R;
+import com.wanandroid.mvp.ui.activity.MainActivity;
 import com.wanandroid.mvp.ui.activity.base.BaseActivity;
 
 import java.util.Timer;
@@ -44,7 +45,7 @@ public class SplashActivity extends BaseActivity {
 	}
 
 	private void goToMainActivity() {
-		Intent intent = new Intent(this, LoginActivity.class);
+		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 		finish();
 	}

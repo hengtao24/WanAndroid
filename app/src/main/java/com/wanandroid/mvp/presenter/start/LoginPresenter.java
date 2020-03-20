@@ -33,23 +33,65 @@ public class LoginPresenter extends BasePresenter<LoginContract.Model, LoginCont
 				.subscribe(new Observer<BaseResponse<UserInfo>>() {
 					@Override
 					public void onSubscribe(Disposable d) {
-						WALog.logI(TAG, Thread.currentThread().getName() + " onSubscribe");
 					}
 
 					@Override
 					public void onNext(BaseResponse<UserInfo> userInfoBaseResponse) {
-						WALog.logI(TAG, userInfoBaseResponse.getData().toString());
 						WALog.logI(TAG, Thread.currentThread().getName() + " onNext");
+						if (userInfoBaseResponse.isSuccess()) {
+							getView().onSuccess(userInfoBaseResponse.getData());
+						} else {
+							getView().showMessage(userInfoBaseResponse.getErrorMsg());
+						}
 					}
 
 					@Override
 					public void onError(Throwable e) {
-						
+						String errMsg = e.getMessage();
+						WALog.logE(TAG, errMsg);
+						getView().dismissLoading();
+						getView().showMessage(errMsg);
 					}
 
 					@Override
 					public void onComplete() {
+						getView().dismissLoading();
+					}
+				});
+	}
 
+	@Override
+	public void register(String username, String password, String repassword) {
+		getModel().register(username, password, repassword)
+				.subscribeOn(Schedulers.io())
+				.doOnSubscribe(o -> getView().showLoading())
+				.observeOn(AndroidScheduler.mainThread())
+				.subscribe(new Observer<BaseResponse<UserInfo>>() {
+					@Override
+					public void onSubscribe(Disposable d) {
+					}
+
+					@Override
+					public void onNext(BaseResponse<UserInfo> userInfoBaseResponse) {
+						WALog.logI(TAG, Thread.currentThread().getName() + " onNext");
+						if (userInfoBaseResponse.isSuccess()) {
+							getView().onSuccess(userInfoBaseResponse.getData());
+						} else {
+							getView().showMessage(userInfoBaseResponse.getErrorMsg());
+						}
+					}
+
+					@Override
+					public void onError(Throwable e) {
+						String errMsg = e.getMessage();
+						WALog.logE(TAG, errMsg);
+						getView().dismissLoading();
+						getView().showMessage(errMsg);
+					}
+
+					@Override
+					public void onComplete() {
+						getView().dismissLoading();
 					}
 				});
 	}
